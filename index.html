@@ -45,6 +45,20 @@ ul,ol{margin:0;padding:0;list-style:none}
 .gnb button[aria-current="true"]{color:var(--ku-green);font-weight:700}
 .gnb button[aria-current="true"]::after{opacity:1}
 
+/* ── 상단 메뉴 팝업 — 기존 사이트처럼 마우스를 올리면 녹색 패널에 하위 메뉴 ── */
+.hdr{position:relative;z-index:20}
+.mega{position:absolute;left:0;right:0;top:100%;background:linear-gradient(100deg,#0B4A26 0%,#12703A 55%,#2E8B3E 100%);color:#fff;box-shadow:0 12px 24px rgba(0,0,0,.14)}
+.mega[hidden]{display:none}
+.mega .wrap{display:grid;grid-template-columns:220px 1fr;gap:32px;padding-block:26px 30px}
+.mega .tag{font-size:14px;line-height:1.6;opacity:.85}
+.mega .tag b{display:block;font-family:var(--display);font-size:21px;font-weight:700;margin-bottom:6px}
+.mega ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px 28px;align-content:start}
+.mega li button{width:100%;text-align:left;padding:10px 2px 9px;border-bottom:1px solid rgba(255,255,255,.35);font-size:15px;font-weight:500;color:#fff}
+.mega li button:hover,.mega li button:focus-visible{border-bottom-color:#fff}
+.mega li button[aria-current="true"]{font-weight:700;border-bottom:2px solid #9BD8B2}
+.mega .ext::after{content:" ↗";font-size:12px;opacity:.75}
+@media (hover:none),(max-width:960px){.mega{display:none!important}}
+
 /* ── 사진 히어로 (경영학과 시안 1번과 같은 방식) ── */
 .hero{position:relative;height:var(--hero-h);overflow:hidden;background:var(--green-deep)}
 .hero img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
@@ -114,9 +128,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .accr .en{font-size:12.5px;color:var(--ink-3);line-height:1.45;grid-column:1}
 .accr .since{grid-column:2;grid-row:1 / span 2;text-align:right;font-size:12px;color:var(--ink-3);line-height:1.5;white-space:nowrap}
 .accr .since b{display:block;font-family:var(--display);font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
-.accr dl{display:grid;gap:12px;border-top:1px solid var(--line);padding-top:16px}
-.accr dt{font-size:12px;font-weight:700;color:var(--green-bright);letter-spacing:.04em;margin-bottom:2px}
-.accr dd{font-size:15px;line-height:1.7}
+.accr .desc{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:16px}
+.accr .desc p{font-size:15px;line-height:1.75}
 .accr .go{justify-self:start;margin-top:2px}
 
 /* ── 3. 이념 · 연혁 ── */
@@ -206,13 +219,17 @@ details.more .hist li:last-child{border-bottom:0}
   .gnb button{padding:8px 11px;font-size:16px}
   .hero h1{font-size:26px}
   .hero .tag{display:none}
-  .idea,.loc,.accr,.code{grid-template-columns:1fr;gap:32px}
-  .accr,.code{gap:16px}
+  .idea,.loc,.code{grid-template-columns:1fr;gap:32px}
+  .code{gap:16px}
+  .accr article{padding:22px 22px 20px}
+  .accr header{grid-template-columns:1fr}
+  .accr .since{grid-column:1;grid-row:auto;text-align:left}
   .staff{grid-template-columns:repeat(2,minmax(0,1fr))}
   .contact{grid-template-columns:1fr}
   .sec.band,.sec.tint{padding:30px 22px}
 }
 @media (max-width:640px){
+  .accr{grid-template-columns:1fr}
   .staff{grid-template-columns:1fr}
   .greet{grid-template-columns:1fr;gap:28px}
   .dean{display:grid;grid-template-columns:120px 1fr}
@@ -229,6 +246,12 @@ details.more .hist li:last-child{border-bottom:0}
     <div class="bar">
       <a class="logo" href="#" id="logo"><span class="ku">KU</span><span class="name"><small>KONKUK UNIVERSITY</small>경영대학</span></a>
       <nav class="gnb" id="gnb" aria-label="주 메뉴"></nav>
+    </div>
+  </div>
+  <div class="mega" id="mega" hidden>
+    <div class="wrap">
+      <p class="tag"><b id="megaTitle"></b>건국, 세계를 이끌<br>녹색의 물결</p>
+      <ul id="megaList"></ul>
     </div>
   </div>
 </header>
@@ -288,11 +311,10 @@ details.more .hist li:last-child{border-bottom:0}
         <p class="en">The Association to Advance Collegiate Schools of Business International</p>
         <p class="since"><b>2015. 11 – 현재</b>2021. 08 재인증</p>
       </header>
-      <dl>
-        <div><dt>어떤 인증인가</dt><dd>100년이 넘는 역사를 가진, 가장 공신력 있는 경영학 인증입니다. 전 세계 경영교육 프로그램 가운데 5% 미만만 보유하고 있습니다.</dd></div>
-        <div><dt>인증 범위</dt><dd>학사과정, 대학원 경영학 석·박사과정, 경영전문대학원 MBA 과정 등 모든 학위과정</dd></div>
-        <div><dt>왜 중요한가</dt><dd>해외 대학과의 교수·학생 교환, 학술교류, 복수학위 도입에 유리하고, 인증 대학에서 이수한 학점을 상호 인정받을 수 있습니다.</dd></div>
-      </dl>
+      <div class="desc">
+        <p>AACSB 국제경영교육인증은 100년이 넘는 역사를 가진 경영학 교육 인증으로, 전 세계 경영교육 프로그램 가운데 5% 미만만이 보유하고 있습니다. 건국대학교 경영대학은 2015년 인증을 받고 2021년 재인증을 받아 학사, 대학원 석·박사, 경영전문대학원 MBA 등 모든 학위과정의 교육 품질을 인정받았습니다.</p>
+        <p>이 인증으로 해외 대학과의 교수·학생 교환, 학술교류, 복수학위 운영에 유리하며, 인증 대학에서 이수한 학점은 서로 인정받을 수 있습니다.</p>
+      </div>
       <a class="btn line go" href="https://www.aacsb.edu/" target="_blank" rel="noopener">AACSB 홈페이지 ↗</a>
     </article>
     <article>
@@ -301,11 +323,10 @@ details.more .hist li:last-child{border-bottom:0}
         <p class="en">Korea Association of Business Education Accreditation</p>
         <p class="since"><b>2016. 07 – 현재</b>2022. 02 3주기 인증</p>
       </header>
-      <dl>
-        <div><dt>어떤 인증인가</dt><dd>미션·비전, 학습목표·성과관리, 교육과정·수업, 학생, 교수, 시설·교육환경, 지속적 개선의 7개 기준으로 경영학 교육 전반을 평가하는 국내 인증입니다.</dd></div>
-        <div><dt>인증 결과</dt><dd>2016년 2주기, 2022년 3주기(학부·대학원·경영전문대학원 통합) 모두 최우수 등급인 ‘5년 인증’ 획득</dd></div>
-        <div><dt>왜 중요한가</dt><dd>졸업생의 교육 수준을 공식적으로 보증합니다. 자체 개발한 AOL(학습성취도평가) 피드백 시스템은 우수 사례로 선정되었습니다.</dd></div>
-      </dl>
+      <div class="desc">
+        <p>한국경영교육인증은 미션과 비전, 학습목표와 성과관리, 교육과정과 수업, 학생, 교수, 시설 및 교육환경, 지속적 개선의 7개 기준으로 경영학 교육 전반을 평가하는 국내 인증입니다.</p>
+        <p>건국대학교 경영대학은 2016년 제2주기(학부·대학원)와 2022년 제3주기(학부·대학원·경영전문대학원) 인증에서 모두 최우수 등급인 ‘5년 인증’을 받았으며, 자체 개발한 AOL(학습성취도평가) 피드백 시스템은 우수 사례로 선정되었습니다.</p>
+      </div>
       <a class="btn line go" href="http://kabea.or.kr/" target="_blank" rel="noopener">한국경영교육인증원 홈페이지 ↗</a>
     </article>
   </div>
@@ -589,7 +610,12 @@ function render(){
   const tab  = menu.tabs[state.t];
 
   const gnb = document.getElementById('gnb'); gnb.replaceChildren();
-  MENU.forEach((m,i) => gnb.append(btn(m.name, '', () => { state.m=i; state.t=0; render(); }, i===state.m)));
+  MENU.forEach((m,i) => {
+    const b = btn(m.name, '', () => { state.m=i; state.t=0; mega.hidden = true; render(); }, i===state.m);
+    b.addEventListener('mouseenter', () => openMega(i));
+    b.addEventListener('focus', () => openMega(i));
+    gnb.append(b);
+  });
 
   const tabs = document.getElementById('tabs');
   tabs.hidden = menu.tabs.length === 0; tabs.replaceChildren();
@@ -599,6 +625,24 @@ function render(){
   const view = tab ? (tab.ext ? {kind:'ext', name:tab.name, ext:tab.ext} : tab.view) : menu.view;
   document.getElementById('content').innerHTML = VIEW[view.kind](view);
 }
+
+/* 상단 메뉴 팝업 */
+const hdr = document.querySelector('.hdr'), mega = document.getElementById('mega');
+function openMega(i){
+  const m = MENU[i];
+  if (!m.tabs.length) { mega.hidden = true; return; }
+  document.getElementById('megaTitle').textContent = m.name;
+  const ul = document.getElementById('megaList'); ul.replaceChildren();
+  m.tabs.forEach((t,j) => {
+    const li = document.createElement('li');
+    li.append(btn(t.name, t.ext ? 'ext' : '', () => { state.m=i; state.t=j; mega.hidden = true; render(); scrollTo(0,0); }, i===state.m && j===state.t));
+    ul.append(li);
+  });
+  mega.hidden = false;
+}
+hdr.addEventListener('mouseleave', () => { mega.hidden = true; });
+document.getElementById('logo').addEventListener('mouseenter', () => { mega.hidden = true; });
+addEventListener('keydown', e => { if (e.key === 'Escape') mega.hidden = true; });
 
 document.getElementById('logo').addEventListener('click', e => { e.preventDefault(); state.m = 0; state.t = 0; render(); scrollTo(0, 0); });
 render();
