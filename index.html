@@ -209,6 +209,15 @@ details.more .hist li:last-child{border-bottom:0}
 .code details li{display:grid;grid-template-columns:30px 1fr;font-size:14.5px;line-height:1.7;color:var(--ink-2)}
 .code details li i{font-style:normal;color:var(--ink-3);font-variant-numeric:tabular-nums;font-size:13px;padding-top:1px}
 
+/* ── 대학(학부) › 학과소개: 학과 소개 + 홈페이지 바로가기 (학과장 정보는 각 학과 홈페이지에) ── */
+.depts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.depts article{border:1px solid var(--line);padding:28px 30px 26px;display:grid;grid-template-rows:auto 1fr auto;gap:14px}
+.depts h3{font-size:22px;color:var(--ku-green);letter-spacing:-.01em}
+.depts h3 small{font-family:var(--body);font-size:14px;font-weight:600;color:var(--ink-3);margin-left:6px}
+.depts p{font-size:15.5px;line-height:1.8}
+.depts .btn{justify-self:start}
+@media (max-width:640px){.depts{grid-template-columns:1fr}}
+
 /* 시안 안내 */
 .memo{margin-top:64px;padding:18px 20px;border:1px dashed var(--line-strong);font-size:13px;line-height:1.7;color:var(--ink-2);background:var(--ground)}
 .memo b{color:var(--ink)}
@@ -445,6 +454,24 @@ details.more .hist li:last-child{border-bottom:0}
 </section>
 </template>
 
+<!-- ═══════════ 대학(학부) › 학과소개 ═══════════ -->
+<template id="tpl-depts">
+<section class="sec">
+  <div class="depts">
+    <article>
+      <h3>경영학과</h3>
+      <p>경영학과는 경영학 일반으로부터 경영정보, 마케팅, 운영관리 및 경영과학, 인사조직, 재무, 전략 및 국제경영, 회계 등 기업활동에 필수적인 모든 내용을 다양하고 밀도있게 다루어 극심한 경쟁 속에서 미래에 기업의 경영자가 갖추어야 할 관리능력의 배양에 중점을 둡니다.</p>
+      <a class="btn line" href="https://biz.konkuk.ac.kr/" target="_blank" rel="noopener">경영학과 홈페이지 바로가기 ↗</a>
+    </article>
+    <article>
+      <h3>기술경영학과 <small>MOT</small></h3>
+      <p>21세기 지식기반 사회에서의 기술혁신과정과 관련된 경영 영역을 다루는 분야로, 전공 학생은 경영학의 핵심 분야에 대한 폭넓은 이해를 바탕으로 기술혁신 경영 이슈, 분석틀 및 방법론을 학습하고 기업 및 공공 기관에의 응용 능력을 습득하도록 합니다. 기술경영 창시자인 미국 스탠포드대학의 윌리엄 밀러 교수를 초빙해 세계 수준의 기술경영 교육을 실시하며 해외 대학과의 협력을 통한 교육을 추진하고 있습니다. 졸업 후 국내외 기업과 연구소, 공공연구기관, 정부부처, 지방자치단체, 정부 및 지자체 산하기관의 기술기획 및 전략경영 분야로 진출할 수 있습니다.</p>
+      <a class="btn line" href="https://mot.konkuk.ac.kr/" target="_blank" rel="noopener">기술경영학과 홈페이지 바로가기 ↗</a>
+    </article>
+  </div>
+</section>
+</template>
+
 <!-- ═══════════ 탭 2: 행정실 (이름 · 사진 포함) ═══════════ -->
 <template id="tpl-office">
 <section class="sec">
@@ -579,7 +606,7 @@ const MENU = [
       { name:'경영대학 소개', view:{kind:'tpl', id:'tpl-about'} },    // 인사말 + 교육 인증 + 이념·연혁 + 찾아오시는 길
       { name:'행정실',       view:{kind:'tpl', id:'tpl-office'} },   // 이름·사진 포함
       { name:'윤리강령',     view:{kind:'tpl', id:'tpl-ethics'} } ] },
-  { name:'대학(학부)', tabs:[ blank('학과소개'), blank('입학안내'), blank('졸업요건 · 경영학과'), blank('졸업요건 · 기술경영학과'), ext('장학제도','건국대학교 장학 안내') ] },
+  { name:'대학(학부)', tabs:[ { name:'학과소개', view:{kind:'tpl', id:'tpl-depts'} }, blank('입학안내') ] },   // 졸업요건·장학제도 탭 제거
   { name:'대학원',     tabs:[ blank('경영학'), blank('기술경영학') ] },
   { name:'교수소개',   tabs:[ ext('경영학과','경영학과 홈페이지 교수소개'), ext('기술경영학과','기술경영학과 홈페이지 교수소개') ] },
   { name:'커뮤니티',   tabs:[ blank('공지사항'), blank('FAQ'), blank('자료실'), blank('포토갤러리') ] },
