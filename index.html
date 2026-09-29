@@ -77,6 +77,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .tabs button:hover{color:var(--ku-green)}
 .tabs button[aria-current="true"]{color:var(--ku-green);font-weight:700;border-bottom-color:var(--ku-green)}
 .tabs .ext::after{content:" ↗";font-size:12px;color:var(--ink-3)}
+/* 기존 사이트처럼 하위 메뉴는 상단 팝업으로만 이동 — 페이지 안 탭은 데스크톱에서 없앰 (팝업이 없는 폰·터치 화면에서만 대신 표시) */
+@media (hover:hover) and (min-width:961px){.tabs{display:none!important}}
 .tabs .was{font-family:var(--body);font-weight:400;font-size:12px;color:var(--ink-3);margin-left:6px}
 .content{margin-top:44px;min-height:420px}
 
@@ -618,7 +620,7 @@ const MENU = [
 const state = { m:0, t:0 };
 
 const VIEW = {
-  blank: () => `<div class="ph">본문 영역 — 내용은 생략 (이번 시안 범위 밖)</div>`,
+  blank: v  => `<div class="ph">${v.name} — 본문 영역 (내용은 생략)</div>`,
   tpl:   v  => document.getElementById(v.id).innerHTML,
   ext:   v  => `<div class="extcard"><div><b>${v.name}</b><span>외부 페이지(${v.ext})로 연결됩니다. 새 창으로 열림.</span></div><span class="btn">${v.name} 바로가기 ↗</span></div>`
 };
@@ -650,7 +652,7 @@ function render(){
 
   document.getElementById('heroTitle').textContent = menu.name;
   const view = tab ? (tab.ext ? {kind:'ext', name:tab.name, ext:tab.ext} : tab.view) : menu.view;
-  document.getElementById('content').innerHTML = VIEW[view.kind](view);
+  document.getElementById('content').innerHTML = VIEW[view.kind]({ ...view, name: view.name || (tab ? tab.name : menu.name) });
 }
 
 /* 상단 메뉴 팝업 */
