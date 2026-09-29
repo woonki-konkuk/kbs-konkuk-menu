@@ -158,18 +158,23 @@ details.more .hist li:last-child{border-bottom:0}
 .way li b{font-weight:600;color:var(--ink-2)}
 .way li span{font-variant-numeric:tabular-nums}
 
-/* ── 행정실 ── */
-.staff{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px 20px}
-.person .imgph{aspect-ratio:3/4}
-.person .role{margin-top:12px;font-size:11.5px;color:var(--green-bright);font-weight:700;letter-spacing:.08em}
-.person h3{font-size:17px;margin:1px 0 8px}
-.person .duty{font-size:14px;line-height:1.6;color:var(--ink-2);min-height:3.2em}
-.person .tel{margin-top:8px;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
-.contact{margin-top:40px;border-top:1px solid var(--ink);display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+/* ── 행정실: 학과장 소개 카드와 같은 방식 (작은 사진 + 직책·이름·연락처·담당 업무) ── */
+.staff{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.person{display:grid;grid-template-columns:108px 1fr;background:var(--surface);border:1px solid var(--line)}
+.person .imgph{border-width:0 1.5px 0 0;padding:8px;font-size:11px;min-height:150px}
+.person .imgph b{font-size:12px}
+.person .body{padding:12px 14px 14px}
+.person .role{font-size:11.5px;color:var(--green-bright);font-weight:700;letter-spacing:.1em}
+.person h3{font-size:18px;margin:2px 0 10px}
+.person dl{display:grid;gap:5px;font-size:13px;line-height:1.45}
+.person dt{color:var(--ink-3);font-size:11px;letter-spacing:.06em}
+.person dd{overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.person .duty{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--ku-green);font-weight:600;line-height:1.5;display:grid;grid-template-columns:auto 1fr;gap:6px}
+.person .duty::before{content:"담당";font-size:10.5px;letter-spacing:.08em;color:var(--ink-3);font-weight:700;padding-top:3px}
+.contact{margin-top:32px;border-top:1px solid var(--ink);display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
 .contact div{padding:16px 0;border-bottom:1px solid var(--line)}
 .contact dt{font-size:12px;color:var(--ink-3);letter-spacing:.04em}
 .contact dd{font-size:15px;font-weight:500;font-variant-numeric:tabular-nums}
-.staff.two{grid-template-columns:repeat(4,minmax(0,1fr))}
 
 /* ── 윤리강령 ── */
 .charter{max-width:46em;font-size:17px;line-height:1.85}
@@ -203,11 +208,12 @@ details.more .hist li:last-child{border-bottom:0}
   .hero .tag{display:none}
   .idea,.loc,.accr,.code{grid-template-columns:1fr;gap:32px}
   .accr,.code{gap:16px}
-  .staff,.staff.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .staff{grid-template-columns:repeat(2,minmax(0,1fr))}
   .contact{grid-template-columns:1fr}
   .sec.band,.sec.tint{padding:30px 22px}
 }
 @media (max-width:640px){
+  .staff{grid-template-columns:1fr}
   .greet{grid-template-columns:1fr;gap:28px}
   .dean{display:grid;grid-template-columns:120px 1fr}
   .dean .imgph{border-width:0 1.5px 0 0}
@@ -423,13 +429,13 @@ details.more .hist li:last-child{border-bottom:0}
 <section class="sec">
   <h2>경영대학 행정실</h2>
   <div class="staff">
-    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><p class="role">행정실장</p><h3><span class="todo">이름</span></h3><p class="duty">&nbsp;</p><p class="tel">02-450-3635</p></article>
-    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><p class="role">직원</p><h3><span class="todo">이름</span></h3><p class="duty">AACSB, 위원회</p><p class="tel">02-450-4007</p></article>
-    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><p class="role">직원</p><h3><span class="todo">이름</span></h3><p class="duty">시간표, 계절학기, 수강신청, 홈페이지 관리</p><p class="tel">02-450-3581</p></article>
-    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><p class="role">직원</p><h3><span class="todo">이름</span></h3><p class="duty">예산, 실험실습비, 대관</p><p class="tel">02-450-3628</p></article>
-    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><p class="role">직원</p><h3><span class="todo">이름</span></h3><p class="duty">교무, 다·부전공, 졸업, 취업</p><p class="tel">02-450-3629</p></article>
-    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><p class="role">직원</p><h3><span class="todo">이름</span></h3><p class="duty">휴·복학, 자퇴, 제적, (재)입학, 교환학생, 성적관련, 취업계, 공결</p><p class="tel">02-450-3671</p></article>
-    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><p class="role">직원</p><h3><span class="todo">이름</span></h3><p class="duty">장학, 학생복지, 혁신사업, 교육과정, 요람</p><p class="tel">02-450-3656</p></article>
+    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><div class="body"><p class="role">행정실장</p><h3><span class="todo">이름</span></h3><dl><dt>연락처</dt><dd>02-450-3635</dd></dl></div></article>
+    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><div class="body"><p class="role">직원</p><h3><span class="todo">이름</span></h3><dl><dt>연락처</dt><dd>02-450-4007</dd></dl><p class="duty">AACSB, 위원회</p></div></article>
+    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><div class="body"><p class="role">직원</p><h3><span class="todo">이름</span></h3><dl><dt>연락처</dt><dd>02-450-3581</dd></dl><p class="duty">시간표, 계절학기, 수강신청, 홈페이지 관리</p></div></article>
+    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><div class="body"><p class="role">직원</p><h3><span class="todo">이름</span></h3><dl><dt>연락처</dt><dd>02-450-3628</dd></dl><p class="duty">예산, 실험실습비, 대관</p></div></article>
+    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><div class="body"><p class="role">직원</p><h3><span class="todo">이름</span></h3><dl><dt>연락처</dt><dd>02-450-3629</dd></dl><p class="duty">교무, 다·부전공, 졸업, 취업</p></div></article>
+    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><div class="body"><p class="role">직원</p><h3><span class="todo">이름</span></h3><dl><dt>연락처</dt><dd>02-450-3671</dd></dl><p class="duty">휴·복학, 자퇴, 제적, (재)입학, 교환학생, 성적관련, 취업계, 공결</p></div></article>
+    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><div class="body"><p class="role">직원</p><h3><span class="todo">이름</span></h3><dl><dt>연락처</dt><dd>02-450-3656</dd></dl><p class="duty">장학, 학생복지, 혁신사업, 교육과정, 요람</p></div></article>
   </div>
   <dl class="contact">
     <div><dt>메일</dt><dd>ku.biz@konkuk.ac.kr</dd></div>
@@ -440,9 +446,9 @@ details.more .hist li:last-child{border-bottom:0}
 
 <section class="sec">
   <h2>일반대학원</h2>
-  <div class="staff two">
-    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><p class="role">경영학과 수업조교</p><h3><span class="todo">이름</span></h3><p class="tel">02-450-3638</p></article>
-    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><p class="role">기술경영학과 수업조교</p><h3><span class="todo">이름</span></h3><p class="tel">02-450-3638</p></article>
+  <div class="staff">
+    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><div class="body"><p class="role">수업조교</p><h3><span class="todo">이름</span></h3><dl><dt>연락처</dt><dd>02-450-3638</dd></dl><p class="duty">일반대학원 경영학과</p></div></article>
+    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><div class="body"><p class="role">수업조교</p><h3><span class="todo">이름</span></h3><dl><dt>연락처</dt><dd>02-450-3638</dd></dl><p class="duty">일반대학원 기술경영학과</p></div></article>
   </div>
   <dl class="contact">
     <div><dt>메일</dt><dd>officekubiz@naver.com</dd></div>
