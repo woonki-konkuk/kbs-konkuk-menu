@@ -839,7 +839,7 @@ document.querySelectorAll('img[data-img]').forEach(i => { i.src = IMG[i.dataset.
 
 <script>
 const blank = n => ({ name:n, view:{kind:'blank'} });
-const ext   = (n, to) => ({ name:n, ext:to });
+const ext   = (n, to, href) => ({ name:n, ext:to, href });   // href가 있으면 누르는 즉시 새 창으로 이동 (바로가기)
 
 /* 상단 메뉴는 현재 경영대학 사이트 그대로. 바뀌는 것은 '경영대학소개'의 하위 메뉴 6개 → 탭 3개 */
 const MENU = [
@@ -848,10 +848,10 @@ const MENU = [
       { name:'행정실',       view:{kind:'tpl', id:'tpl-office'} },   // 이름·사진 포함
       { name:'윤리강령',     view:{kind:'tpl', id:'tpl-ethics'} } ] },
   { name:'대학(학부)', tabs:[ { name:'학과소개', view:{kind:'tpl', id:'tpl-depts'} }, blank('입학안내') ] },   // 졸업요건·장학제도 탭 제거
-  { name:'대학원',     tabs:[ { name:'경영학', view:{kind:'tpl', id:'tpl-grad-biz'} }, { name:'기술경영학', view:{kind:'tpl', id:'tpl-grad-mot'} } ] },
+  { name:'대학원',     tabs:[ { name:'경영학', view:{kind:'tpl', id:'tpl-grad-biz'} }, { name:'기술경영학', view:{kind:'tpl', id:'tpl-grad-mot'} }, ext('경영전문대학원(MBA)','경영전문대학원 홈페이지','https://mba.konkuk.ac.kr/') ] },
   { name:'교수소개',   tabs:[], view:{kind:'profs'} },   // 두 학과 교수소개 바로가기를 한 페이지에
   { name:'커뮤니티',   tabs:[ blank('공지사항'), blank('FAQ'), blank('자료실'), blank('포토갤러리') ] },
-  { name:'학생활동',   tabs:[ blank('경영대학 학생회'), ext('경영학과 학생회','경영학과 홈페이지'), ext('기술경영학과 학생회','기술경영학과 홈페이지') ] },
+  { name:'학생활동',   tabs:[ blank('경영대학 학생회'), ext('경영학과 학생회','경영학과 홈페이지','https://biz.konkuk.ac.kr/biz/10519/subview.do'), ext('기술경영학과 학생회','기술경영학과 홈페이지','https://mot.konkuk.ac.kr/mot/10546/subview.do') ] },
   { name:'취업지원',   tabs:[], view:{kind:'blank'} },
   { name:'이용안내',   tabs:[ blank('사이트맵'), blank('로그인') ] }
 ];
@@ -865,8 +865,10 @@ const VIEW = {
     <div class="extcard"><div><b>경영학과</b><span>경영학과 홈페이지의 교수소개 페이지로 연결됩니다. 새 창으로 열림.</span></div><a class="btn" href="https://biz.konkuk.ac.kr/biz/23334/subview.do" target="_blank" rel="noopener">교수소개 바로가기 ↗</a></div>
     <div class="extcard"><div><b>기술경영학과</b><span>기술경영학과 홈페이지의 교수소개 페이지로 연결됩니다. 새 창으로 열림.</span></div><a class="btn" href="https://mot.konkuk.ac.kr/mot/10540/subview.do" target="_blank" rel="noopener">교수소개 바로가기 ↗</a></div>
   </div>`,
-  ext:   v  => `<div class="extcard"><div><b>${v.name}</b><span>외부 페이지(${v.ext})로 연결됩니다. 새 창으로 열림.</span></div><span class="btn">${v.name} 바로가기 ↗</span></div>`
+  ext:   v  => `<div class="extcard"><div><b>${v.name}</b><span>외부 페이지(${v.ext})로 연결됩니다. 새 창으로 열림.</span></div>${v.href ? `<a class="btn" href="${v.href}" target="_blank" rel="noopener">${v.name} 바로가기 ↗</a>` : `<span class="btn">${v.name} 바로가기 ↗</span>`}</div>`
 };
+
+const go = href => { window.open(href, '_blank', 'noopener'); };
 
 function btn(label, cls, on, current){
   const b = document.createElement('button');
@@ -891,10 +893,10 @@ function render(){
 
   const tabs = document.getElementById('tabs');
   tabs.hidden = menu.tabs.length === 0; tabs.replaceChildren();
-  menu.tabs.forEach((t,i) => tabs.append(btn(t.name, t.ext ? 'ext' : '', () => { state.t=i; render(); }, i===state.t)));
+  menu.tabs.forEach((t,i) => tabs.append(btn(t.name, t.ext ? 'ext' : '', () => { if (t.href) return go(t.href); state.t=i; render(); }, i===state.t)));
 
   document.getElementById('heroTitle').textContent = menu.name;
-  const view = tab ? (tab.ext ? {kind:'ext', name:tab.name, ext:tab.ext} : tab.view) : menu.view;
+  const view = tab ? (tab.ext ? {kind:'ext', name:tab.name, ext:tab.ext, href:tab.href} : tab.view) : menu.view;
   document.getElementById('content').innerHTML = VIEW[view.kind]({ ...view, name: view.name || (tab ? tab.name : menu.name) });
 }
 
@@ -907,7 +909,7 @@ function openMega(i){
   const ul = document.getElementById('megaList'); ul.replaceChildren();
   m.tabs.forEach((t,j) => {
     const li = document.createElement('li');
-    li.append(btn(t.name, t.ext ? 'ext' : '', () => { state.m=i; state.t=j; mega.hidden = true; render(); scrollTo(0,0); }, i===state.m && j===state.t));
+    li.append(btn(t.name, t.ext ? 'ext' : '', () => { mega.hidden = true; if (t.href) return go(t.href); state.m=i; state.t=j; render(); scrollTo(0,0); }, i===state.m && j===state.t));
     ul.append(li);
   });
   mega.hidden = false;
