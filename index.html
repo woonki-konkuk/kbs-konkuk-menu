@@ -89,7 +89,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .todo{color:var(--ink-3);border-bottom:1px dashed var(--line-strong);font-weight:500}
 .extcard{border:1px solid var(--line);padding:26px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px}
 .extcard b{font-family:var(--display);font-size:16px}
-.extcard span{display:block;font-size:14px;color:var(--ink-2);margin-top:4px}
+.extcard > div > span{display:block;font-size:14px;color:var(--ink-2);margin-top:4px}
+.extlist{display:grid;gap:14px}
 .btn{display:inline-block;background:var(--ku-green);color:#fff;padding:9px 16px;border-radius:3px;font-size:14px;font-weight:600;white-space:nowrap}
 .btn.line{background:none;color:var(--ku-green);border:1px solid var(--ku-green)}
 .btn.line:hover{background:var(--ku-green);color:#fff}
@@ -848,7 +849,7 @@ const MENU = [
       { name:'윤리강령',     view:{kind:'tpl', id:'tpl-ethics'} } ] },
   { name:'대학(학부)', tabs:[ { name:'학과소개', view:{kind:'tpl', id:'tpl-depts'} }, blank('입학안내') ] },   // 졸업요건·장학제도 탭 제거
   { name:'대학원',     tabs:[ { name:'경영학', view:{kind:'tpl', id:'tpl-grad-biz'} }, { name:'기술경영학', view:{kind:'tpl', id:'tpl-grad-mot'} } ] },
-  { name:'교수소개',   tabs:[ ext('경영학과','경영학과 홈페이지 교수소개'), ext('기술경영학과','기술경영학과 홈페이지 교수소개') ] },
+  { name:'교수소개',   tabs:[], view:{kind:'profs'} },   // 두 학과 교수소개 바로가기를 한 페이지에
   { name:'커뮤니티',   tabs:[ blank('공지사항'), blank('FAQ'), blank('자료실'), blank('포토갤러리') ] },
   { name:'학생활동',   tabs:[ blank('경영대학 학생회'), ext('경영학과 학생회','경영학과 홈페이지'), ext('기술경영학과 학생회','기술경영학과 홈페이지') ] },
   { name:'취업지원',   tabs:[], view:{kind:'blank'} },
@@ -860,6 +861,10 @@ const state = { m:0, t:0 };
 const VIEW = {
   blank: v  => `<div class="ph">${v.name} — 본문 영역 (내용은 생략)</div>`,
   tpl:   v  => document.getElementById(v.id).innerHTML,
+  profs: () => `<div class="extlist">
+    <div class="extcard"><div><b>경영학과</b><span>경영학과 홈페이지의 교수소개 페이지로 연결됩니다. 새 창으로 열림.</span></div><a class="btn" href="https://biz.konkuk.ac.kr/biz/23334/subview.do" target="_blank" rel="noopener">교수소개 바로가기 ↗</a></div>
+    <div class="extcard"><div><b>기술경영학과</b><span>기술경영학과 홈페이지의 교수소개 페이지로 연결됩니다. 새 창으로 열림.</span></div><a class="btn" href="https://mot.konkuk.ac.kr/mot/10540/subview.do" target="_blank" rel="noopener">교수소개 바로가기 ↗</a></div>
+  </div>`,
   ext:   v  => `<div class="extcard"><div><b>${v.name}</b><span>외부 페이지(${v.ext})로 연결됩니다. 새 창으로 열림.</span></div><span class="btn">${v.name} 바로가기 ↗</span></div>`
 };
 
