@@ -221,6 +221,53 @@ details.more .hist li:last-child{border-bottom:0}
 .depts .btn{justify-self:start}
 @media (max-width:640px){.depts{grid-template-columns:1fr}}
 
+/* ── 대학원 (경영학 · 기술경영학) — 기존 페이지 내용 그대로, 항목별로 왼쪽 제목 · 오른쪽 내용 ── */
+.grad > h2{font-size:24px;letter-spacing:-.02em;margin-bottom:10px}
+.grad > .intro{display:grid;gap:12px;font-size:16px;line-height:1.85;max-width:50em;margin-bottom:30px}
+.grad > .intro .goal{margin-bottom:2px}
+.grad .goal{font-family:var(--display);font-weight:500;font-size:19px;line-height:1.6;color:var(--ku-green)}
+.grad details.en{margin-top:4px}
+.grad details.en > summary{cursor:pointer;font-size:13.5px;font-weight:600;color:var(--ink-3);list-style:none}
+.grad details.en > summary::-webkit-details-marker{display:none}
+.grad details.en > summary::before{content:"+ "}
+.grad details.en[open] > summary::before{content:"– "}
+.grad details.en p{font-size:14.5px;line-height:1.75;color:var(--ink-2);margin-top:8px}
+.grad .row{display:grid;grid-template-columns:190px minmax(0,1fr);gap:10px 36px;padding:28px 0;border-top:1px solid var(--line)}
+.grad .row:first-of-type{border-top:1px solid var(--ink)}
+.grad .row > h3{font-size:17px;color:var(--ku-green);letter-spacing:-.01em;line-height:1.4}
+.grad .row > h3 small{display:block;font-family:var(--body);font-size:12.5px;font-weight:500;color:var(--ink-3);margin-top:4px;line-height:1.45}
+.grad .body{display:grid;gap:12px;font-size:15.5px;line-height:1.8;min-width:0}
+.grad .body h4{font-family:var(--body);font-size:15px;font-weight:700;margin-top:6px}
+.grad .body h4:first-child{margin-top:0}
+.grad .body h4 span{font-weight:500;color:var(--ink-3);font-size:13.5px;margin-left:6px}
+.grad ul.dot{display:grid;gap:6px}
+.grad ul.dot li{position:relative;padding-left:14px}
+.grad ul.dot li::before{content:"";position:absolute;left:0;top:.75em;width:5px;height:5px;border-radius:50%;background:var(--green-bright)}
+.grad ul.dot ul.dot{margin-top:6px}
+.grad ul.dot b{font-weight:600}
+.grad .degrees{display:flex;flex-wrap:wrap;gap:10px}
+.grad .degrees li{border:1px solid var(--line-strong);padding:10px 16px;display:grid;line-height:1.45}
+.grad .degrees b{font-family:var(--display);font-weight:700;font-size:15.5px}
+.grad .degrees small{font-size:12px;color:var(--ink-3)}
+.grad .majors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 30px}
+.grad .majors dt{font-family:var(--display);font-weight:700;font-size:16px;margin-bottom:4px}
+.grad .majors dd{font-size:14.5px;line-height:1.75;color:var(--ink-2)}
+.grad .req > div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:10px 0;border-bottom:1px solid var(--line)}
+.grad .req > div:first-child{padding-top:0}
+.grad .req > div:last-child{border-bottom:0}
+.grad .req dt{font-weight:700;font-size:14.5px}
+.grad .tblwrap{overflow-x:auto}
+.grad table{width:100%;border-collapse:collapse;font-size:14.5px;border-top:2px solid var(--ku-green)}
+.grad th,.grad td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.65}
+.grad thead th,.grad tbody th{background:var(--ground);font-weight:600;white-space:nowrap}
+.grad tbody th small{display:block;font-size:12px;font-weight:500;color:var(--ink-3)}
+.grad table.spec td{white-space:nowrap}
+.grad .note{font-size:14px;color:var(--ink-2)}
+.grad .office{font-size:14px;color:var(--ink-2)}
+.grad .body .btn{justify-self:start}
+.grad .staff{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:760px){.grad .row{grid-template-columns:1fr;gap:12px}.grad .majors{grid-template-columns:1fr}}
+
 /* 시안 안내 */
 .memo{margin-top:64px;padding:18px 20px;border:1px dashed var(--line-strong);font-size:13px;line-height:1.7;color:var(--ink-2);background:var(--ground)}
 .memo b{color:var(--ink)}
@@ -473,6 +520,210 @@ details.more .hist li:last-child{border-bottom:0}
 </section>
 </template>
 
+<!-- ═══════════ 대학원 › 경영학 (kbs/10481 내용 그대로, 표기만 정리) ═══════════ -->
+<template id="tpl-grad-biz">
+<section class="sec grad">
+  <h2>일반대학원 경영학과</h2>
+  <div class="row">
+    <h3>교육 목표</h3>
+    <div class="body"><p class="goal">경영학 분야에 대한 심도 깊은 이해를 토대로 경영학 분야의 전문가가 갖추어야 할 전문지식과 소양을 함양한다.</p></div>
+  </div>
+  <div class="row">
+    <h3>수여학위</h3>
+    <div class="body"><ul class="degrees"><li><b>경영학석사</b></li><li><b>경영학박사</b></li></ul></div>
+  </div>
+  <div class="row">
+    <h3>세부전공분야<small>6개 전공</small></h3>
+    <div class="body">
+      <dl class="majors">
+        <div><dt>회계학</dt><dd>회계학 전공분야에서는 기업 외부/내부 이해 관계자의 의사결정에 이용되는 회계정보와 관련된 실증분석 연구에 필요한 지식을 학습한다. 경제학을 기반으로 한 재무회계, 관리회계, 회계감사 및 세무회계 연구에 대한 이론과 세미나 수업으로 구성된다.</dd></div>
+        <div><dt>재무관리</dt><dd>재무관리 전공분야에서는 기업재무론, 투자론, 금융기관경영론 등의 세부 분야로 구분될 수 있다. 기업재무론에서는 자금조달, 투자의사결정, 배당정책 등 기업의 최적 재무의사결정을 다루고, 투자론에서는 포트폴리오 이론, 자산가격결정 이론 등 투자 이론과 함께 투자분석 및 투자관리에 대해 학습하며, 금융기관경영론에서는 금융기관의 위험관리와 금융기관의 경영분석 등의 주제를 다루고 있다.</dd></div>
+        <div><dt>마케팅</dt><dd>마케팅 전공분야에서는 소비자의 욕구를 만족시키기 위한 마케팅 활동과 이를 적극적으로 반영하여 시장의 개척 및 관리를 수행하는 마케팅 전략을 개발하는 학문분야이다. 세부 연구 분야로는 소비자행동, 유통, 광고, 시장조사, 신제품 마케팅, 관계마케팅, B2B, 서비스 마케팅, 온라인/하이테크 마케팅, 브랜드 마케팅, 감성 마케팅, 소매 마케팅 등이 있다.</dd></div>
+        <div><dt>전략 및 국제경영</dt><dd>전략 및 국제경영 전공분야에서는 기업이나 기타 조직체의 목적을 달성하기 위해 인적조직자원을 효율적으로 조달, 유지, 개발시키는 활동을 계획, 조직, 통제하는 것을 목표로 한다. 이를 위한 교육과정으로는 인간의 관계적 측면에 관한 내용과 기능적, 제도적 측면에 관한 내용으로 구성된다.</dd></div>
+        <div><dt>인사조직·노사관계</dt><dd>인사조직·노사관계 전공분야에서는 조직 내 인적자원의 특성과 활동, 조직의 구조와 제도 등을 연구하여 조직관리에 대한 전반적인 이해도를 높이고, 효과적인 인적자원 관리방안을 모색하며, 조직의 구조와 제도를 구축하고 설계하는 방식을 고찰하는 학문분야이다.</dd></div>
+        <div><dt>운영관리 및 경영과학</dt><dd>운영관리 및 경영과학 전공분야에서는 기업 또는 공공 조직의 가치 창출 활동을 효과적이고 효율적으로 수행하기 위한 다양한 연구를 수행하는 학문분야이다. 세부 전공 분야로는 전통적인 공급망관리, 운영관리, 환경경영, 서비스경영, 창조경영 등 시기 변화에 맞는 연구 주제까지 다루고 있다.</dd></div>
+      </dl>
+    </div>
+  </div>
+  <div class="row">
+    <h3>학과내규</h3>
+    <div class="body">
+      <h4>석사과정<span>총 24학점</span></h4>
+      <ul class="dot">
+        <li>자과과목 최소 18학점 이상(자기전공 최소 15학점 이상) 이수하여야 하고, 연구방법론 과목 3학점 이상(자기전공에 미포함) 필수 이수하여야 함.</li>
+        <li>연구방법론 과목은 경영학과 내 개설되는 ‘경영학연구방법론’ 과목을 수강하도록 하며, 전공에 따라 ‘경영학연구방법론1’은 마케팅, 전략 및 국제경영, 인사조직·노사관계, 운영관리 및 경영과학 전공이, ‘경영학연구방법론2’는 회계학, 재무관리 전공이 수강하도록 함.</li>
+        <li>단, 비동일계 입학자는 12학점의 전공기초과목(경영학과 학부수업)을 추가로 취득하여야 함.</li>
+      </ul>
+      <h4>박사과정<span>총 36학점</span></h4>
+      <ul class="dot">
+        <li>자과과목 최소 27학점 이상(자기전공 최소 12학점 이상) 이수하여야 하고, 연구방법론 과목을 6학점 이상(자기전공에 미포함) 필수 이수하여야 함.</li>
+        <li>나머지 9학점은 경영학과 내 타전공이나 타학과 과목을 수강하도록 함.</li>
+        <li>연구방법론 과목은 경영학과 내 개설되는 ‘경영학연구방법론’ 3학점과 나머지 3학점은 타학과 포함 자유롭게 수강하도록 하며, 전공에 따라 ‘경영학연구방법론1’은 마케팅, 전략 및 국제경영, 인사조직·노사관계, 운영관리 및 경영과학 전공이, ‘경영학연구방법론2’는 회계학, 재무관리 전공이 수강하도록 함.</li>
+        <li>동일계열 타학과 연구방법론 과목을 수강하게 될 경우, 지도교수의 승인을 받아야 함.</li>
+        <li>단, 비동일계 박사과정 입학자는 18학점의 전공기초학점(경영학과 학부 및 석사과정 수업)을 추가로 취득해야 함.</li>
+        <li>박사과정은 10년 이내에 논문제출까지 완료해야 졸업이 되고, 기한을 넘길 경우 재입학 처리됨.</li>
+      </ul>
+      <h4>통합과정</h4>
+      <ul class="dot">
+        <li>자과과목의 제약은 박사과정에 준함.</li>
+        <li>연구방법론은 총 9학점을 이수하여야 하며, 경영학과 내 개설되는 경영학연구방법론 2학점과 나머지 6학점은 타학과 포함 자유롭게 수강하도록 함.</li>
+        <li>단, 비동일계 석박사통합과정 입학자는 12학점의 전공기초학점(경영학과 학부 및 석사과정 수업)을 추가로 취득하여야 함.</li>
+        <li>석박사통합과정은 10년 이내에 논문제출까지 완료해야 졸업이 되고, 기한을 넘길 경우 재입학 처리됨.</li>
+      </ul>
+      <p class="note">운영관리 및 경영과학 전공의 경우, 정보통신경영학과에서 개설되는 과목을 전공과목으로 인정함.</p>
+    </div>
+  </div>
+  <div class="row">
+    <h3>졸업요건</h3>
+    <div class="body">
+      <dl class="req">
+        <div><dt>영어시험</dt><dd>일반대학원 규정과 동일함. (대학원 홈페이지 참고)</dd></div>
+        <div><dt>종합시험</dt><dd>일반대학원 규정과 동일함. (대학원 홈페이지 참고)<br>각 과정 응시과목 수 관련 내용은 학과 내규 참고 (학과 사무실 문의)</dd></div>
+        <div><dt>논문심사</dt><dd>
+          <ul class="dot">
+            <li><b>논문제출요건</b> : 종합시험과 영어시험에 합격한 자 / 총 이수학점을 취득한 자</li>
+            <li><b>석사과정</b> : 3인으로 구성된 학과 청구논문심사위원회에서 합격한 경우 석사학위 취득</li>
+            <li><b>박사과정</b>
+              <ul class="dot">
+                <li><b>공개발표심사(Proposal)</b> : 학위논문제출 전 학기까지 공개발표심사를 받아야 함.</li>
+                <li><b>일반요건</b> : 박사과정 입학 후부터 학위논문 심사완료 3개월 전까지의 기간에 국외 학술지 또는 한국학술진흥재단 등재후보지 이상의 국내 학술지에 1편 이상의 논문을 의무적으로 게재(예정 포함)하여야 함.</li>
+                <li>2017학년도 8월 졸업 예정자(2017학년도 1학기 청구논문 신청자)부터 적용하며, 적용 대상은 현재 재학생 중 2010학년도 이후 입학생부터 적용함.</li>
+                <li>학술지 게재(예정 포함)에 대한 증명서를 학과 행정조교에게 제출하도록 하며, 제출 서류에 따라 주임교수의 서명이 완료된 경우에만 학술지 게재에 대한 요건을 갖추는 것으로 함.</li>
+              </ul>
+            </li>
+          </ul>
+        </dd></div>
+      </dl>
+    </div>
+  </div>
+  <div class="row">
+    <h3>기타</h3>
+    <div class="body">
+      <p>일반대학원 홈페이지로 공지사항을 안내하고, 편의상 개인 메일로도 안내를 하니 홈페이지와 메일함을 자주 확인하기 바람. 또한, 포털시스템에 등록된 연락처와 이메일 주소가 변경될 경우, 업데이트하기 바람.</p>
+      <a class="btn line" href="https://grad.konkuk.ac.kr/" target="_blank" rel="noopener">일반대학원 홈페이지 ↗</a>
+    </div>
+  </div>
+  <div class="row">
+    <h3>문의사항</h3>
+    <div class="body">
+      <div class="staff"><article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><div class="body"><p class="role">수업조교</p><h3><span class="todo">이름</span></h3><dl><dt>연락처</dt><dd>02-450-3638</dd></dl><p class="duty">일반대학원 경영학과</p></div></article></div>
+      <p class="office">경영학과 대학원 행정실 · 경영관 420호 · officekubiz@naver.com</p>
+    </div>
+  </div>
+</section>
+</template>
+
+<!-- ═══════════ 대학원 › 기술경영학 (kbs/19460 내용 그대로, 표기만 정리) ═══════════ -->
+<template id="tpl-grad-mot">
+<section class="sec grad">
+  <h2>일반대학원 기술경영학과</h2>
+  <div class="intro">
+    <p class="goal">기술경영은 기술과 혁신의 경영을 다루는 분야로 21세기 지식기반사회에 필수적인 학문분야입니다.</p>
+    <p>건국대학교 기술경영학과는 국내 최초의 기술경영학과로서 전공 학생은 경영학의 핵심 분야에 대한 폭넓은 이해를 바탕으로 기술경영의 이슈, 분석틀 및 방법론을 학습하고 기업 및 공공부문에 대한 응용능력을 습득하도록 합니다.</p>
+    <p>본 학과에서는 국내 최고의 교수진을 바탕으로 기술경영 창시자인 미국 스탠포드대학의 윌리엄 밀러 교수 등 세계적인 학자들을 초빙하고 해외 저명 대학들과의 긴밀한 협력을 통한 세계수준의 기술경영교육을 실시하고 있습니다.</p>
+    <p>본 학과의 졸업생들은 졸업 후 국내외 기업과 연구소, 공공연구기관, 정부부처, 지방자치단체, 정부 및 지자체 산하기관의 기술기획 및 전략경영 분야로 진출할 수 있습니다.</p>
+    <details class="en">
+      <summary>English</summary>
+      <p>Management of Technology (MOT) is a discipline that deals with management of technology and innovation, which is essential in the 21st knowledge-based society.</p>
+      <p>The Department of Technology Management is the first MOT department in Korea, and students will learn issues, analytical framework, methodologies, and application capabilities of technology and innovation management, based on the broad knowledge on the major areas of management and business. This department has top level domestic MOT professors and will invite world-class foreign professors like Prof. William F. Miller of Stanford Graduate School of Business. It will make a close collaboration with famous MOT schools in the world. After graduation of this department, students will work at domestic and foreign companies and their research institutes, public research institutes, governmental and regional administrations as well as their agencies.</p>
+    </details>
+  </div>
+  <div class="row">
+    <h3>교육목표</h3>
+    <div class="body"><p>본 대학원은 시대 선도적이고 수월성 있는 교육을 통하여 세계적 수준의 식견을 갖춘 미래지향적 연구자, 실천지향적 전문가, 공동체 발전의 선도자를 양성하는 것을 목적으로 한다.</p></div>
+  </div>
+  <div class="row">
+    <h3>세부전공<small>3개 전공</small></h3>
+    <div class="body">
+      <ul class="degrees">
+        <li><b>기술혁신경영</b><small>Technology and Innovation Management</small></li>
+        <li><b>국가기술경영</b><small>National Management of Technology Innovation and Policy</small></li>
+        <li><b>벤처기술경영</b><small>Technology and Innovation Management</small></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <h3>교과목 소개</h3>
+    <div class="body">
+      <div class="tblwrap"><table>
+        <tbody>
+          <tr><th>전공기초<small>모든 전공 공통</small></th><td>기술경영론, 연구개발관리, 국가기술경영, 벤처기술경영, 기술경영연구방법론</td></tr>
+          <tr><th>기술혁신경영전공<small>전공선택</small></th><td>기술전략, 지식경영, 기술마케팅, 혁신경영, 지적재산권관리론, 정보통신기술과경영특강, 환경기술과경영특강, 문화콘텐츠기술과경영특강, 컨버전스하이테크마케팅, 하이테크시장조사론, 프로젝트경영, 경영전략시뮬레이션론, 디자인혁신, 기술혁신경영세미나, 연구개발관리세미나, 기술혁신경영프로젝트, 신제품개발과정관리, 데이터마이닝과 전략, 서비스혁신경영</td></tr>
+          <tr><th>벤처기술경영전공<small>전공선택</small></th><td>기업가정신, 기술가치평가, 하이테크상품개발, 감성공학과기술경영, 벤처기술경영기획론, 기술벤처창업및경영, 기술트렌드와벤처경영패러다임, 기술경영과기업문화, 기술벤처기업의변화관리, 벤처기술경영과서비스관리론, 글로벌벤처기술경영전략, 벤처기술경영세미나, 중소벤처기업의글로벌운영전략, 중소벤처기업경영기획론, 중소벤처기업전략세미나, 벤처테마개발론</td></tr>
+          <tr><th>국가기술경영전공<small>전공선택</small></th><td>기술경제, 기술예측, 연구개발조직과인적자원, 기술협력, 기술융합, 제조업의기술혁신, 생명공학과경영특강, 나노기술과경영특강, 기술과환경, 기술과지역발전, 기술과시사경제, 기술과금융, 국가기술경영세미나, 기술경영특수논제, 기술경영과리더십, 기술정보론</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+  <div class="row">
+    <h3>학위의 구성</h3>
+    <div class="body">
+      <ul class="degrees">
+        <li><b>경영학 석사 – 기술경영전공</b><small>MBA in MOT</small></li>
+        <li><b>경영학 박사 – 기술경영전공</b><small>Ph.D in MOT</small></li>
+        <li><b>경영학 석사 – 기술경영복수학위</b><small>Dual Degree</small></li>
+        <li><b>기술경영교육이수인정서</b><small>MOT-Certification</small></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <h3>국제협력학위과정</h3>
+    <div class="body">
+      <p>밀러 MOT 스쿨의 프로그램들은 외국의 유명 전문가들을 교수요원으로 위촉하여 운영하는 바, 다양한 과목에 있어서 영어수업을 실시할 것입니다. 아울러 Stanford 대학교, SUNY-Stony Brook, SPRU 등 전 세계의 기술경영 분야 저명대학과 협력하여 이들 대학의 우수강의를 본 프로그램의 학생들에게 제공할 계획입니다.</p>
+      <h4>공동학위</h4>
+      <p>학부는 뉴욕주립대학교인 SUNY-Stony Brook과 기술경영 공동학위를 수여할 예정입니다.</p>
+    </div>
+  </div>
+  <div class="row">
+    <h3>학위준비과정<small>CTO 과정, 경영전문대학원 MOT MBA</small></h3>
+    <div class="body">
+      <p>풀타임 MBA : MOT MBA 입학 정원 20명</p>
+      <div class="tblwrap"><table class="spec">
+        <thead><tr><th>학위과정별 (입학정원)</th><th>수업형태별</th><th>수업연한</th><th>학기운영</th><th>이수학점</th><th>졸업요건</th><th>수여학위명칭</th></tr></thead>
+        <tbody><tr><td>풀타임(MOT) MBA (20)</td><td>주간</td><td>2년</td><td>6학기제</td><td>45학점</td><td>평균학점 B 이상</td><td>MOT MBA</td></tr></tbody>
+      </table></div>
+    </div>
+  </div>
+  <div class="row">
+    <h3>인턴십</h3>
+    <div class="body">
+      <ul class="dot">
+        <li>일정기간을 기업 및 공공기관의 관련부서(팀)에서 현장실무를 수행하되 과제연구를 실시하도록 함</li>
+        <li>인턴십 해당 과목 ‘현장과제연구’ : 직장에서 근무하는 학생의 경우 자사에서 현장과제연구를 실시하도록 함. 직장이 없는 학생의 경우 인턴십을 통해 현장과제연구를 실시함. 현장과제연구 결과는 Output(신제품, 비즈니스 모델, 사례, 문제해결리포트)으로 제출토록 함</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <h3>졸업자의 취업기회 확대계획</h3>
+    <div class="body"><p>비 직장인 학생의 취업 기회 확대를 위하여 취업 지도교수제, 취업 지원마케팅 등의 프로그램을 적극 운영함</p></div>
+  </div>
+  <div class="row">
+    <h3>정규과정 외 단기 프로그램 설치계획</h3>
+    <div class="body"><p>비 학위과정의 최고경영자과정과 단기 프로그램인 전문가과정을 교육 수요에 맞추어 설치하여 운영함 : Stanford-Konkuk 최고경영자 과정(A Strategic Use of IT for the Innovation Process 등)</p></div>
+  </div>
+  <div class="row">
+    <h3>졸업생의 진출분야</h3>
+    <div class="body">
+      <ul class="dot">
+        <li>국내외 제조업 및 서비스 산업의 대기업들의 전략기획, 기술기반 기획관리 전문가, 하이테크 마케터, 프로젝트컨설턴트로 근무</li>
+        <li>2008년 말 현재 2만여 개에 이르는 국내외 기술집약형 중소기업 및 벤처기업의 중견관리자 및 최고경영자로서 활동</li>
+        <li>2008년 말 현재 1만 7,000개에 이르는 국내 기업부설연구소들의 기술기획 요원으로 활동하면서 연구개발 생산성 제고에 기여</li>
+        <li>전국의 100여개에 이르는 정부출연연구기관, 지자체, 중앙정부의 연구기관의 기술혁신 경영 및 정책 분야의 연구요원으로 활동</li>
+        <li>중앙정부, 광역 및 기초 지자체의 공무원으로 진출하여 기술혁신에 기반한 국가 성장동력 창출 업무의 직접적인 기획</li>
+        <li>국내외 대학에서 기술경영 교수요원으로 활동하면서 후학 양성에 매진</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <h3>문의사항</h3>
+    <div class="body">
+      <div class="staff"><article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><div class="body"><p class="role">수업조교</p><h3><span class="todo">이름</span></h3><dl><dt>연락처</dt><dd>02-450-3638</dd></dl><p class="duty">일반대학원 기술경영학과</p></div></article></div>
+      <p class="office">대학원 행정실 · 경영관 420호 · officekubiz@naver.com</p>
+    </div>
+  </div>
+</section>
+</template>
+
 <!-- ═══════════ 탭 2: 행정실 (이름 · 사진 포함) ═══════════ -->
 <template id="tpl-office">
 <section class="sec">
@@ -493,18 +744,6 @@ details.more .hist li:last-child{border-bottom:0}
   </dl>
 </section>
 
-<section class="sec">
-  <h2>일반대학원</h2>
-  <div class="staff">
-    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><div class="body"><p class="role">수업조교</p><h3><span class="todo">이름</span></h3><dl><dt>연락처</dt><dd>02-450-3638</dd></dl><p class="duty">일반대학원 경영학과</p></div></article>
-    <article class="person"><div class="imgph"><span><b>사진 추가</b>3:4</span></div><div class="body"><p class="role">수업조교</p><h3><span class="todo">이름</span></h3><dl><dt>연락처</dt><dd>02-450-3638</dd></dl><p class="duty">일반대학원 기술경영학과</p></div></article>
-  </div>
-  <dl class="contact">
-    <div><dt>메일</dt><dd>officekubiz@naver.com</dd></div>
-    <div><dt>위치</dt><dd>경영관 420호</dd></div>
-    <div><dt>주소</dt><dd>(05029) 서울시 광진구 능동로 120</dd></div>
-  </dl>
-</section>
 </template>
 
 <!-- ═══════════ 탭 3: 윤리강령 ═══════════ -->
@@ -608,7 +847,7 @@ const MENU = [
       { name:'행정실',       view:{kind:'tpl', id:'tpl-office'} },   // 이름·사진 포함
       { name:'윤리강령',     view:{kind:'tpl', id:'tpl-ethics'} } ] },
   { name:'대학(학부)', tabs:[ { name:'학과소개', view:{kind:'tpl', id:'tpl-depts'} }, blank('입학안내') ] },   // 졸업요건·장학제도 탭 제거
-  { name:'대학원',     tabs:[ blank('경영학'), blank('기술경영학') ] },
+  { name:'대학원',     tabs:[ { name:'경영학', view:{kind:'tpl', id:'tpl-grad-biz'} }, { name:'기술경영학', view:{kind:'tpl', id:'tpl-grad-mot'} } ] },
   { name:'교수소개',   tabs:[ ext('경영학과','경영학과 홈페이지 교수소개'), ext('기술경영학과','기술경영학과 홈페이지 교수소개') ] },
   { name:'커뮤니티',   tabs:[ blank('공지사항'), blank('FAQ'), blank('자료실'), blank('포토갤러리') ] },
   { name:'학생활동',   tabs:[ blank('경영대학 학생회'), ext('경영학과 학생회','경영학과 홈페이지'), ext('기술경영학과 학생회','기술경영학과 홈페이지') ] },
